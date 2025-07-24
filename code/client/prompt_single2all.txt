@@ -1,0 +1,95 @@
+## Task Instruction
+
+The robot is asked to perform the following task based on a single-view image of the workspace.
+
+
+## Step 1: Relevant Knowledge from Experiment Database
+
+The following retrieved information describes relevant prior knowledge that may help complete the task.  
+Please refer to it only if it aligns with the scene shown in the image and the current task instruction.
+
+Task Type: {retrieved_task_type}  
+Experimental Steps:  
+{retrieved_steps}
+
+
+Typical Tools / Instruments:  
+{retrieved_instruments}
+
+
+## Step 2: Object Recognition (From the Image)
+
+List all interactive object categories in the image that are potentially relevant for completing the task.  
+
+- Treat each object as a whole (e.g. “beaker” not “beaker lip”+“body”)  
+- Ignore background/robot elements  
+- Use singular form  
+
+Example: all_objects_categories = ["tray", "plate", "bread"]
+
+all_objects_categories = [?]
+
+
+## Step 3: Subtask Decomposition
+
+Based on:
+- the input task instruction,
+- the visible objects above,
+- and the retrieved experiment knowledge (if relevant),  
+
+Please decompose the task into an **ordered list of atomic, abstract subtasks** that the robot can follow.
+
+Constraints:
+- Only use objects in `all_objects_categories`
+- Subtasks must be grounded in the image and consistent with the task
+- Only reference knowledge if it fits the task and context
+
+Example:
+The_subtasks = ["grasp the plate", "put the plate on the tray", "grasp the bread", "put the bread on the plate", "grasp the tray", "put the tray on the table"]
+
+The_subtasks = [?]
+
+
+
+## Step 4: Answer in terms of verbs and nouns
+
+Based on:
+- all_objects_categories above, 
+- The_subtasks above,
+
+
+Please answer the subtasks in the form of verbs and nouns.
+
+Note:
+- Only split the subtasks into the list of verbs and list of nouns.
+- Each element in the verb_list and the noun_list is also a list. 
+- Each element contains verbs or nouns related to the atomic skills of that stage.
+- The order of the elements (lists) inside verb_list and noun_list is the order in which the subtasks are executed. 
+- verb_list and noun_list should be answered separately for the left arm and right arm, because our robotics plateform is a dual arm plateform.
+- If the object to be manipulated is nearer to certain arm, you must select this arm to execute this subtask. 
+- The left arm is on the left side of the image, and The right arm is on the right side of the image. 
+- If in certain stage, you find that there is no subtask for certain arm, the element of this stage in verb_list and noun_list should be written with "None".
+- However, if certain arm has already been occupied (such as grasping some object), you have to choose another arm to complete this subtask. 
+- You need to analyze, which arm is better for which task. Sometimes there is one arm acting in this stage, but sometimes both arms should all act in the same stage, with the same or different tasks. 
+- You should consider the consistency of the subtasks. For example, if you pick an object with left arm, then you should place this object with left arm as well. 
+
+
+
+Example:
+verb_list_left = [["None"], ["None"], ["grasp"], ["place"]]
+noun_list_left = [["None"], ["None"], ["bread"], ["bread", "tray"]]
+verb_list_right = [["grasp"], ["place"], ["None"], ["None"]]
+noun_list_right = [["plate"], ["plate", "tray"], ["None"], ["None"]]
+
+
+verb_list_left = [?]
+noun_list_left = [?]
+verb_list_right = [?]
+noun_list_right = [?]
+
+
+
+
+## Query  
+Query Task: "{instruction}"  
+Query Image:

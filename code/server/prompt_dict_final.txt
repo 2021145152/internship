@@ -1,0 +1,70 @@
+############################## pick ##############################
+---
+verb: pick
+noun: tube
+prompt: Analyze the image carefully and determine if the robotic arm gripper is holding the test tube?. Provide your final answer by stating only 'Yes' or 'No'. 
+weights_path: xxxxxx
+---
+verb: grasp
+noun: transparent beaker
+prompt: Analyze the image carefully and determine if the robotic arm gripper is holding the beaker?. Provide your final answer by stating only 'Yes' or 'No'. 
+weights_path: xxxxxx
+---
+############################## place ##############################
+---
+verb: place
+noun: tube
+prompt: Analyze the image carefully and determine if the test tube is placed in the test tube rack on the table. Provide your final answer by stating only 'Yes' or 'No'. Note: The test tube lying horizontally on the rack (even if touching it) should be counted as 'No'.
+weights_path: output_tube_num1_place/checkpoint-1400
+---
+verb: place
+noun: weight
+prompt: Analyze the image carefully and determine if the beaker is placed in the weight on the table. Provide your final answer by stating only 'Yes' or 'No'. Note: The test tube lying horizontally on the rack (even if touching it) should be counted as 'No'.
+weights_path: xxxxxx
+---
+verb: place
+noun: square plate
+prompt: Analyze the image carefully and determine if the beaker is placed in the square plate on the table. Provide your final answer by stating only 'Yes' or 'No'. Note: The test tube lying horizontally on the rack (even if touching it) should be counted as 'No'.
+weights_path: xxxxxx
+---
+############################## open ##############################
+---
+verb: open
+noun: door
+prompt: Analyze the image carefully and determine if the cabinet door on the table is open. Provide your final answer by stating only 'Yes' or 'No'. 
+weights_path: open_door/checkpoint-1800
+---
+############################## close ##############################
+---
+verb: close
+noun: door
+prompt: Analyze the image carefully and determine if the cabinet door on the table is closed. Provide your final answer by stating only 'Yes' or 'No'. 
+weights_path: open_door/checkpoint-1800
+---
+############################## move ##############################
+---
+verb: move
+noun: pipette
+prompt: Analyze the image carefully and answer with only 'Yes' or 'No':  
+**Is the very bottom tip of the pipette (the liquid-contact point) directly aligned above the opening of the beaker on the table, ensuring precise liquid transfer?**  
+Key criteria for judgment:  
+1. **Tip Visibility**: The pipette's lowest tip must be clearly visible in the image.  
+2. **Beaker Presence**: If the beaker is partially occluded, verify there is clear visual evidence of its presence directly beneath the pipette tip. If no beaker is visibly present beneath the tip, the answer must be 'No'.
+If all conditions are met, answer 'Yes'; otherwise, 'No'.  
+weights_path: move_to_beaker/checkpoint-2600
+---
+############################## check ##############################
+---
+verb: check
+noun: beaker
+prompt: Analyze the image carefully and determine if there is any liquid in the beaker on the table. Provide your final answer by stating only 'Yes' or 'No'. 
+weights_path: check_liquid/checkpoint-1000
+---
+
+
+
+
+
+
+
+
